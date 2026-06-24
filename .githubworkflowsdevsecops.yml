@@ -1,0 +1,31 @@
+name: DevSecOps Automation Scan
+
+on: [push, pull_request]
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # CHỐT 1: Quét lộ lọt mật khẩu/token bằng TruffleHog
+      - name: Kiểm tra lộ lọt mật khẩu (Secret Scan)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ""
+          head: "HEAD"
+
+      # CHỐT 2: Quét mã nguồn tĩnh (SAST) bằng Flawfinder chuyên cho C/C++
+      - name: Thiết lập Python cho công cụ SAST
+        uses: actions/setup-python@v4
+        with:
+          python-python-version: '3.x'
+
+      - name: Cài đặt và Chạy Flawfinder (SAST)
+        run: |
+          pip install flawfinder
+          flawfinder --minlevel=4 main.c

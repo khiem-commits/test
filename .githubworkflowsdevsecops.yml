@@ -28,4 +28,4 @@ jobs:
       - name: Cài đặt và Chạy Flawfinder (SAST)
         run: |
           pip install flawfinder
-          flawfinder --minlevel=4 main.c
+          flawfinder --minlevel=1 main.c

@@ -7,11 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout mã nguồn
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # CHỐT 1: Quét mã nguồn tĩnh (SAST)
       - name: Thiet lap Python de quet SAST
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 

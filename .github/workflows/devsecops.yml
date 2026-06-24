@@ -1,0 +1,21 @@
+name: DevSecOps Automation Scan
+
+on: [push, pull_request]
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v3
+
+      # CHỐT 1: Quét mã nguồn tĩnh (SAST)
+      - name: Thiet lap Python de quet SAST
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Chay Flawfinder (SAST)
+        run: |
+          pip install flawfinder
+          flawfinder --minlevel=1 main.c

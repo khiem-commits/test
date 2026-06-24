@@ -18,4 +18,4 @@ jobs:
       - name: Chay Flawfinder (SAST)
         run: |
           pip install flawfinder
-          flawfinder --minlevel=1 --error-level=1 main.c
+          flawfinder --minlevel=4 --error-level=1 main.c

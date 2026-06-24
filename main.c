@@ -8,7 +8,7 @@ void login() {
     printf("Nhap mat khau he thong: ");
     
     // Sử dụng hàm nguy hiểm gets() gây lỗi tràn bộ đệm (Buffer Overflow)
-    fgets(password, sizeof(password), stdin);
+    gets(password);
 }
 
 int main() {
